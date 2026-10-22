@@ -1,0 +1,3 @@
+import Link from 'next/link';import RegisterForm from '@/components/RegisterForm'
+export const metadata={title:'Create your account'}
+export default function Register(){return <section className="section section-soft"><div className="container" style={{maxWidth:640}}><div className="dashboard-card"><div className="eyebrow">Your next step, at your pace</div><h1 style={{fontSize:'2.3rem'}}>Create your Miriam Health profile</h1><p>Share only what you are comfortable sharing. You can update your information any time.</p><RegisterForm/><p style={{marginTop:18,textAlign:'center'}}>Already have an account? <Link className="text-link" href="/login">Sign in</Link></p></div></div></section>}
