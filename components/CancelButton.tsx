@@ -1,0 +1,3 @@
+'use client'
+import {useState} from 'react'
+export default function CancelButton({id}:{id:string}){const [msg,setMsg]=useState('');async function cancel(){if(!window.confirm('Would you like to cancel this appointment request?'))return;const r=await fetch('/api/appointments/cancel',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({appointmentId:id})});const j=await r.json();setMsg(j.message||j.error);if(r.ok)window.location.reload()}return <span><button className="btn btn-outline" onClick={cancel} style={{minHeight:44}}>Cancel</button>{msg&&<small role="status">{msg}</small>}</span>}

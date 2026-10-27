@@ -1,0 +1,2 @@
+import Link from 'next/link';import {Heart} from 'lucide-react'
+export default function NotFoundPage(){return <section className="section section-soft"><div className="container empty-state" style={{maxWidth:680}}><span className="icon-box" style={{margin:'0 auto 18px'}}><Heart/></span><div className="eyebrow">A little detour</div><h1 style={{fontSize:'2.5rem'}}>We can’t find that page</h1><p>It may have moved, or the address may not be quite right. You can always start again from home.</p><Link className="btn btn-primary" href="/">Back to home</Link></div></section>}

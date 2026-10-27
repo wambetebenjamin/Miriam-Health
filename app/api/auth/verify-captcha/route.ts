@@ -1,0 +1,3 @@
+import {z} from 'zod';import {verifyCaptcha} from '@/lib/security'
+const schema=z.object({captchaToken:z.string().min(1),captchaVersion:z.enum(['v2','v3']).optional()})
+export async function POST(req:Request){const body=await req.json().catch(()=>null);const parsed=schema.safeParse(body);if(!parsed.success)return Response.json({error:'Please complete the security check.'},{status:400});const result=await verifyCaptcha(parsed.data.captchaToken,parsed.data.captchaVersion,'google_login');if(!result.ok)return Response.json({error:result.message,code:result.code,fallback:'fallback'in result?result.fallback:undefined},{status:result.status});return Response.json({verified:true})}

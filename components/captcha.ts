@@ -1,0 +1,2 @@
+declare global {interface Window {grecaptcha?:{ready:(cb:()=>void)=>void;execute:(key:string,options:{action:string})=>Promise<string>;render:(element:HTMLElement,options:{sitekey:string;callback:(token:string)=>void;expiredCallback?:()=>void})=>number}}}
+export async function captchaToken(action:string){const key=process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;if(!key)return '';if(!window.grecaptcha)return '';return new Promise<string>(resolve=>window.grecaptcha!.ready(()=>window.grecaptcha!.execute(key,{action}).then(resolve).catch(()=>resolve(''))))}

@@ -1,0 +1,4 @@
+'use client'
+import Image from 'next/image';import {motion,useReducedMotion} from 'framer-motion';import {Star} from 'lucide-react'
+type Story={name:string;loc:string;photo:string;quote:string}
+export default function MotionTestimonials({stories}:{stories:Story[]}){const reduce=useReducedMotion();return <div className="testimonials" style={{marginTop:28}}>{stories.map((m,i)=><motion.article className="quote-card" key={m.name} initial={reduce?false:{opacity:0,x:i%2===0?-28:28}} whileInView={{opacity:1,x:0}} viewport={{once:true,amount:.2}} transition={{duration:.7,delay:i*.12}}><div className="stars" aria-label="5 out of 5 stars">{[1,2,3,4,5].map(n=><Star key={n} size={15} fill="currentColor"/>)}</div><blockquote>“{m.quote}”</blockquote><div className="quote-person"><Image src={m.photo} alt={`Portrait representing ${m.name}`} width={48} height={48}/><div><strong>{m.name}</strong><span>{m.loc}, Kenya</span></div></div></motion.article>)}</div>}
